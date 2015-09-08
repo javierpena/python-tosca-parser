@@ -6,7 +6,7 @@
 
 Name:           python-%{pypi_name}
 Version:        XXX
-Release:        1%{?dist}
+Release:        XXX
 Summary:        Parser for TOSCA Simple Profile in YAML
 
 License:        ASL 2.0
@@ -73,26 +73,26 @@ templates and creates an in-memory graph of TOSCA nodes and their relationship.
 %endif
 
 %install
-%{__python2} setup.py install --skip-build --root %{buildroot}
+%{py2_install}
 # generate html docs 
 sphinx-build doc/source html
 # remove the sphinx-build leftovers
 rm -rf html/.{doctrees,buildinfo}
 
 %if 0%{?with_python3}
-%{__python3} setup.py install --skip-build --root %{buildroot}
+%{py3_install}
 %endif
 
 %files -n python2-%{pypi_name}
 %doc html README.rst
 %license LICENSE
 %{python2_sitelib}/toscaparser
-%{python2_sitelib}/tosca_parser-%{upstream_version}-py?.?.egg-info
+%{python2_sitelib}/tosca_parser-*.egg-info
 
 %files -n python3-%{pypi_name}
 %doc html README.rst
 %license LICENSE
 %{python3_sitelib}/toscaparser
-%{python3_sitelib}/tosca_parser-%{upstream_version}-py?.?.egg-info
+%{python3_sitelib}/tosca_parser-*.egg-info
 
 %changelog
