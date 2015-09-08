@@ -67,10 +67,6 @@ templates and creates an in-memory graph of TOSCA nodes and their relationship.
 
 %build
 %{__python2} setup.py build
-# generate html docs 
-sphinx-build doc/source html
-# remove the sphinx-build leftovers
-rm -rf html/.{doctrees,buildinfo}
 
 %if 0%{?with_python3}
 %{__python3} setup.py build
@@ -78,6 +74,10 @@ rm -rf html/.{doctrees,buildinfo}
 
 %install
 %{__python2} setup.py install --skip-build --root %{buildroot}
+# generate html docs 
+sphinx-build doc/source html
+# remove the sphinx-build leftovers
+rm -rf html/.{doctrees,buildinfo}
 
 %if 0%{?with_python3}
 %{__python3} setup.py install --skip-build --root %{buildroot}
